@@ -1,4 +1,4 @@
-function ShowMessage() {
+function getFunctions() {
     
     //read file line by line
 	//https://linuxhint.com/read-file-line-line-javascript/
@@ -9,16 +9,18 @@ function ShowMessage() {
 	    input : f.createReadStream(user_file)
 	});
 	r.on('line', function (text) {
-		//const streetAddress = addy.substring(0, addy.indexOf(","));
+	
 	var x = text.substring(0, text.indexOf(","));
 	var f_x= text.substring(text.indexOf(",") + 1, text.length);
-
+	console.log(text)
 	for(let i= -1000; i<1000; i++){
+		
 		//checks for addition
 		var value = i.toString()
 		if(eval(x + '+' + value) == f_x){
 			console.log('+' + value)
 		}
+
 		// checks for subtraction
 
 		//convert negative value to positive to add
@@ -31,13 +33,24 @@ function ShowMessage() {
 			if(eval(x + '-' + value) == f_x){
 				console.log('-' + value)
 			}
-
 		}
-		
+
+		//checks for multiply
+		if(eval(x + '*' + value) == f_x){
+			console.log('*' + value)
+		}
+
+
+		//check for divide 
+		if(value != 0){
+			if(eval(x + '/' + value) == f_x){
+				console.log('/' + value)
+			}
+		}
 	}
-	console.log('--------')
+	console.log(' ')
 	});
 	
 }
 
-ShowMessage();
+getFunctions();
