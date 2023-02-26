@@ -1,0 +1,17 @@
+(declare-const J Bool)
+(declare-const A Bool)
+(declare-const G Bool)
+(declare-const M Bool)
+
+(assert (=> J (or A (not A))))
+(assert (=> A (or G (not G))))
+(assert J)
+(assert (not G))
+
+; Define constraint to check
+;M => (J and not G) or (not J and A and not G)
+(assert (=> M (or (and J (not G)) (and (not J) A (not G)))))
+
+(check-sat)
+(get-model)
+
