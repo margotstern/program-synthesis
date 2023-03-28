@@ -1,12 +1,9 @@
-// // (define-fun max2 ((x Int) (y Int)) Int (ite (<= x y) y x))
-
 
 //  To ensure presevation of presendence, sometimes we need to add parens
 //  TODO would be nice to actually track presendence of operations
 //  is there some kind of library for this?
 function astToJsStructureP(ast){
-
-  if (ast> 1) {
+  if (ast.length > 1) {
     return "(" + astToJsStructure(ast) + ")"
   }
   else {
@@ -24,27 +21,6 @@ function astToJsStructure(ast){
   else if (ast.length == 1) {
     return ast[0];
   }
-
-  else if(ast[0] == "ite"){
-    const condition = "if(" + astToJsStructure(ast[2]) + " " + astToJsStructure(ast[1]) + " " + astToJsStructure(ast[3]) + "){\n";
-    const condition_true = "\treturn " + astToJsStructure(ast[4]) + "\n}\n";
-    const condition_false = "\treturn " + astToJsStructure(ast[5]) + "\n}\n";
-    return condition + condition_true + condition_false;
-  }
-
-  else if(ast[0] == "Int"){
-    return "return " + astToJsStructure(ast[1]); 
-  }
-
-  else if(ast[0] == "Bool" && ast.length == 2){
-    return "return " + astToJsStructure(ast[1]);
-  }
-
-  else if(ast[0] == "Bool" && ast.length > 2){
-    return "return " + parseBoolean(ast[1])
-  }
-
-
   else if (ast[0] == "str.at") {
     return astToJsStructureP(ast[1]) + "[" + astToJsStructure(ast[2]) + "]";
   }
@@ -101,14 +77,5 @@ astToJs = function(ast) {
   return "  return " + astToJsStructure(ast) + ";";
 };
 
+console.log(astToJs("(+ x x)"));
 
-
-const ast = "define-fun max2 ((x Int) (y Int)) Int (ite (<= x y) y x)"
-const ast_processed = "ite <= x y y x"
-const ast_processed2 = "Int y"
-const ast_processed3 = "Bool false"
-var ast_split = ast_processed.split(" ")
-var ast_split2 = ast_processed2.split(" ")
-var ast_split3 = ast_processed3.split(" ")
-console.log(astToJsStructureP(ast_split3))
-// console.log(astToJsStructureP(ast_split))
