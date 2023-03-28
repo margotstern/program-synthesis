@@ -1,0 +1,12 @@
+Logic puzzle: Jack is looking at Anne. 
+              Anne is looking at George. 
+              Jack is married, George is not, and we don’t know if Anne is married. 
+              Is a married person looking at an unmarried person?
+                          
+Answer: Yes. If Anne is married, then she is married and looking at George, who is unmarried. 
+             If Anne is unmarried, then Jack, who is married, is looking at her. Either way, the statement is correct.
+             
+Approach: 
+- Create boolean variables to logically represent if a person is married or not for each person (J, A, G) and variable to encode married.
+- Assert logical constaints defined in the problem: Jack is married, Geroge is not, Anne is looking at George, Jack is looking at Anne
+- Assert that M is true, meaning a married peron looking at an unmarried person.
