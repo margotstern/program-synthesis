@@ -44,7 +44,6 @@ function astToJsStructure(ast){
     return "return " + parseBoolean(ast[1])
   }
 
-
   else if (ast[0] == "str.at") {
     return astToJsStructureP(ast[1]) + "[" + astToJsStructure(ast[2]) + "]";
   }
@@ -97,6 +96,10 @@ function astToJsStructure(ast){
   }
 };
 
+function parseBoolean(ast){
+  return ast;
+}
+
 astToJs = function(ast) {
   return "  return " + astToJsStructure(ast) + ";";
 };
@@ -107,6 +110,12 @@ const ast = "define-fun max2 ((x Int) (y Int)) Int (ite (<= x y) y x)"
 const ast_processed = "ite <= x y y x"
 const ast_processed2 = "Int y"
 const ast_processed3 = "Bool false"
+// (and (< a b) (= a 10)))
+    // (ite (and (>= a b) (>= a c)) a
+    //   (ite (and (>= b a) (>= b c)) b
+    //     (ite (and (>= c a) (>= c b)) c 0))))
+//(+ (* x x) (* y y)))
+const ast_processed4 = ""
 var ast_split = ast_processed.split(" ")
 var ast_split2 = ast_processed2.split(" ")
 var ast_split3 = ast_processed3.split(" ")
