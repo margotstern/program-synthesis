@@ -22,7 +22,6 @@ function getFunctions() {
 		}
 
 		// checks for subtraction
-
 		//convert negative value to positive to add
 		if(value[0] == '-'){
 			if(eval(x + '+' + eval(value + '*' + '-1')) == f_x){

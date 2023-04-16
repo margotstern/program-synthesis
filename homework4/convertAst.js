@@ -97,6 +97,16 @@ function astToJsStructure(ast){
 };
 
 function parseBoolean(ast){
+// var stack = [];
+// stack.push(2);       // stack is now [2]
+// stack.push(5);       // stack is now [2, 5]
+// var i = stack.pop(); // stack is now [2]
+// alert(i);            // displays 5
+
+  var stack = []
+  for(let i=0; i<ast.length; i++){
+    console.log(ast[i]);
+  }
   return ast;
 }
 
@@ -115,7 +125,9 @@ const ast_processed3 = "Bool false"
     //   (ite (and (>= b a) (>= b c)) b
     //     (ite (and (>= c a) (>= c b)) c 0))))
 //(+ (* x x) (* y y)))
-const ast_processed4 = ""
+const ast_processed4 = "(and (< a b) (= a 10)))"
+var ast_split4 = ast_processed4.split(" ")
+console.log(parseBoolean(ast_split4))
 var ast_split = ast_processed.split(" ")
 var ast_split2 = ast_processed2.split(" ")
 var ast_split3 = ast_processed3.split(" ")
